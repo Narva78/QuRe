@@ -16,6 +16,46 @@ class PdoGsb{
         public function _destruct(){
             PdoGsb::$monPdo = null;
         }
+
+	public function getInfosMed($login, $mdp){
+		$req = "select utilisateur.id as id, 
+		utilisateur.nom as nom, 
+		utilisateur.prenom as prenom,
+		utilisateur.status from utilisateur 
+		where utilisateur.RPPS='$login' and utilisateur.mdp='$mdp'";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	}
+
+
+	public function getInfosPatient($login, $mdp){
+		$req = "select utilisateur.id as id, 
+		utilisateur.nom as nom, 
+		utilisateur.prenom as prenom,
+		utilisateur.status from utilisateur 
+		where utilisateur.secuSocial='$login' and utilisateur.mdp='$mdp'";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	}
+
+	
+	public function getInfosPharmacien($login, $mdp){
+	$req = "select utilisateur.id as id, 
+	utilisateur.nom as nom, 
+	utilisateur.prenom as prenom,
+	utilisateur.status from utilisateur 
+	where utilisateur.id='$login' and utilisateur.mdp='$mdp'";
+	$rs = PdoGsb::$monPdo->query($req);
+	$ligne = $rs->fetch();
+	return $ligne;
+}
+
+
+
+
+
 ?>
 
 
