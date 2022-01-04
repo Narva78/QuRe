@@ -17,6 +17,9 @@ class PdoGsb{
             PdoGsb::$monPdo = null;
         }
 
+	
+#INFO MEDECIN	
+
 	public function getInfosMed($login, $mdp){
 		$req = "select utilisateur.id as id, 
 		utilisateur.nom as nom, 
@@ -27,8 +30,22 @@ class PdoGsb{
 		$ligne = $rs->fetch();
 		return $ligne;
 	}
+	
+	
+	public function getNomMed(){
+		$req = "select utilisateur.id as id, 
+		utilisateur.nom as nom, 
+		utilisateur.prenom as prenom from utilisateur
+		where utilisateur.status=2";
+		$res = PdoGsb::$monPdo->query($req);
+		$leResultat = $res->fetchAll();
+		return $leResultat;
+	}
+	
+	
 
-
+#INFO PATIENT
+	
 	public function getInfosPatient($login, $mdp){
 		$req = "select utilisateur.id as id, 
 		utilisateur.nom as nom, 
@@ -39,7 +56,19 @@ class PdoGsb{
 		$ligne = $rs->fetch();
 		return $ligne;
 	}
+	
+	public function getNomPatient(){
+		$req = "select utilisateur.id as id, 
+		utilisateur.nom as nom, 
+		utilisateur.prenom as prenom from utilisateur
+		where utilisateur.status=1";
+		$res = PdoGsb::$monPdo->query($req);
+		$leResultat = $res->fetchAll();
+		return $leResultat;
+	}
 
+
+#INFO PHARMACIEN
 	
 	public function getInfosPharmacien($login, $mdp){
 	$req = "select utilisateur.id as id, 
@@ -52,8 +81,15 @@ class PdoGsb{
 	return $ligne;
 }
 
-
-
+	public function getNomPharmacien(){
+		$req = "select utilisateur.id as id, 
+		utilisateur.nom as nom, 
+		utilisateur.prenom as prenom from utilisateur
+		where utilisateur.status=3";
+		$res = PdoGsb::$monPdo->query($req);
+		$leResultat = $res->fetchAll();
+		return $leResultat;
+	}
 
 
 ?>
