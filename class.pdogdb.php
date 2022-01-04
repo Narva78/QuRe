@@ -18,7 +18,7 @@ class PdoGsb{
         }
 
 	
-#INFO MEDECIN	
+#INFO MEDECIN (conexion + profil)
 
 	public function getInfosMed($login, $mdp){
 		$req = "select utilisateur.id as id, 
@@ -44,7 +44,7 @@ class PdoGsb{
 	
 	
 
-#INFO PATIENT
+#INFO PATIENT (conexion + profil)
 	
 	public function getInfosPatient($login, $mdp){
 		$req = "select utilisateur.id as id, 
@@ -68,7 +68,7 @@ class PdoGsb{
 	}
 
 
-#INFO PHARMACIEN
+#INFO PHARMACIEN (conexion + profil)
 	
 	public function getInfosPharmacien($login, $mdp){
 	$req = "select utilisateur.id as id, 
