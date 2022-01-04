@@ -16,6 +16,13 @@ class PdoGsb{
         public function _destruct(){
             PdoGsb::$monPdo = null;
         }
+	
+	public static function getPdoTest(){
+		if(PdoTest::$monpdoTest == null){
+			PdoTest::$monPdoTest = new PdoTest();
+		}
+		return PdoTest::$monPdoTest;
+}
 
 	
 #INFO MEDECIN (conexion + profil)
