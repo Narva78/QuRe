@@ -71,14 +71,14 @@ class PdoGsb{
 #INFO PHARMACIEN (conexion + profil)
 	
 	public function getInfosPharmacien($login, $mdp){
-	$req = "select utilisateur.id as id, 
-	utilisateur.nom as nom, 
-	utilisateur.prenom as prenom,
-	utilisateur.status from utilisateur 
-	where utilisateur.id='$login' and utilisateur.mdp='$mdp'";
-	$rs = PdoGsb::$monPdo->query($req);
-	$ligne = $rs->fetch();
-	return $ligne;
+		$req = "select utilisateur.id as id, 
+		utilisateur.nom as nom, 
+		utilisateur.prenom as prenom,
+		utilisateur.status from utilisateur 
+		where utilisateur.id='$login' and utilisateur.mdp='$mdp'";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
 }
 
 	public function getNomPharmacien(){
@@ -91,7 +91,27 @@ class PdoGsb{
 		return $leResultat;
 	}
 
+#Cryptage de donnée
+	
+	public function cryptage(){
+		$password = "select utilisateur.mdp
+		from utilisateur";
+		$password = PdoGsb::$monPdo->query($req);
+		$password = md5($password_1);
+	}
+	
 
+#ADMIN
+	
+	public function getInfoAdmin(){
+		$req = "select id, nom, prenom, adresse, email
+		from utilisateur
+		where utilisateur.status = 0";
+		$res = PdoGsb::$monPdo->query($req);
+		$leResultat = $res->fetchAll();
+		return $leResultat;
+	}
+	
 ?>
 
 
